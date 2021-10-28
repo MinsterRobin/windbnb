@@ -15,6 +15,7 @@ const THEMES = [
                 primary: 'Montserrat',
                 secondary: 'Mulish'
             },
+            tiny: "1rem",
             very_small: "1.2rem",
             small: "1.4rem",
             regular: "1.6rem",

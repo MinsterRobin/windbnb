@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
     html {
         font-size: 62.5%;        
         --padding-size: 40px;
+        font-family: ${props => props.theme.font.family.primary};
         
         background-color: ${props => props.theme.background};
         
