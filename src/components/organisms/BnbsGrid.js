@@ -1,10 +1,11 @@
-import React from "react";
+import React, {Fragment} from "react";
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import BnbCard from "../molecules/BnbCard";
 import Container from "../atoms/Container";
 import {P} from "../atoms/Typography";
 import Separator from "../atoms/Separator";
+import BnbRating from "../atoms/BnbRating";
 
 const GridLayout = styled.div`
     display: grid;
@@ -35,8 +36,8 @@ const BnbsGrid = ({bnbs}) => {
             </Container>
             <Separator height={"32px"}/>
             <GridLayout>
-                {bnbs.map((bnb, key) =>
-                    <BnbCard key={key} isSuperhost={bnb.superHost && true} rating={bnb.rating} type={bnb.type} title={bnb.title} imgSrc={bnb.photo} />
+                {bnbs.map((bnb, index) =>
+                    <BnbCard key={index} isSuperhost={bnb.superHost && true} rating={bnb.rating} type={bnb.type} title={bnb.title} imgSrc={bnb.photo} />
                 )};
             </GridLayout>
         </Container>

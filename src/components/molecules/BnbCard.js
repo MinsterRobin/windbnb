@@ -44,10 +44,8 @@ const BnbCard = ({imgSrc, title, type, rating, isSuperhost}) => {
             <Container flex vertical justify={"flex-start"}>
                 <Container flex align={"center"} justify={"space-between"}>
                     <Container flex align={"center"}>
-                        {isSuperhost &&
-                            [<SuperHostIndicator/>,
-                            <Separator width={"10px"}/>]
-                        }
+                        {isSuperhost && <SuperHostIndicator/>}
+                        {isSuperhost && <Separator width={"10px"}/>}
                         <P family={"primary"} size={"small"} mobileSize={"very_small"} weight={"500"} color={lighten(0.3,theme.default.normal)} noWrapEllipsis data={"sdfsdf"}>{type}</P>
                     </Container>
                     <BnbRating rating={rating}/>
