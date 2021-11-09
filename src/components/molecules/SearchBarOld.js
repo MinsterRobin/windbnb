@@ -21,7 +21,7 @@ z-index: 1;
     transition: all 500ms ease-in-out;
 `;
 
-const SearchBar = () => {
+const SearchBarOld = () => {
     const theme = useTheme();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -69,8 +69,8 @@ const SearchBar = () => {
     );
 };
 
-SearchBar.propTypes = {
+SearchBarOld.propTypes = {
 
 };
 
-export default SearchBar;
+export default SearchBarOld;

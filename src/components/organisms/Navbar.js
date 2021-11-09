@@ -1,7 +1,8 @@
 import React from "react";
 import styled from 'styled-components';
 import {ReactComponent as Logo} from "../../data/assets/logo.svg";
-import SearchBar from "../molecules/SearchBar";
+import SearchBarOld from "../molecules/SearchBarOld";
+import SearchBar from "./SearchBar";
 
 const Layout = styled.div`
     position: relative;

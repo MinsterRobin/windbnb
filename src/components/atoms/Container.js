@@ -10,9 +10,10 @@ const Container = styled.div`
     padding: ${props => props.padding && props.padding};
     margin: ${props => props.margin && props.margin}; 
     width: ${props => props.width ? props.width : "100%"};
+    min-width: 0;
     height: ${props => props.height ? props.height : "100%"};
-    overflow: ${props => props.overflow ? props.overflow : "100%"};
-    flex: 1;    
+    overflow: ${props => props.overflow ? props.overflow : "none"};
+    flex: ${props => props.flexSize ? props.flexSize : "1"};;    
 `;
 
 Container.propTypes = {
@@ -25,7 +26,8 @@ Container.propTypes = {
     margin: PropTypes.string,
     width: PropTypes.string,
     height: PropTypes.string,
-    overflow: PropTypes.string
+    overflow: PropTypes.string,
+    flexSize: PropTypes.number
 };
 
 export default Container;

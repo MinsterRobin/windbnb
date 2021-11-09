@@ -23,7 +23,11 @@ const Button = styled.input`
     &:hover {
         opacity: 0.9;
         background-color: ${props => lighten(0.74,props.theme.default.normal)};
-    }    
+    }
+    
+    :focus {
+        outline: none;
+    }
 `;
 
 Button.propTypes = {

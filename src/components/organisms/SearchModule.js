@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styled, {useTheme} from 'styled-components';
 import PropTypes from 'prop-types';
 import Container from "../atoms/Container";
-import SearchBar from "../molecules/SearchBar";
+import SearchBarOld from "../molecules/SearchBarOld";
 
 const Layout = styled.div`
     display: flex;
@@ -15,7 +15,7 @@ const SearchModulde = () => {
 
     return(
         <Layout isOpen={isOpen}>
-            <SearchBar/>
+            <SearchBarOld/>
         </Layout>
     );
 };
