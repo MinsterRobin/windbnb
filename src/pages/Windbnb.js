@@ -13,13 +13,14 @@ const Windbnb = () => {
     const [amount, setAmount] = useState(0);
     const [inputAutocompleteChange, setInputAutocompleteChange] = useState("");
     return (
-        <TemplateWindbnb>
-            <Navbar/>
-            {/*<ItemAmountPicker title={"Adults"} description={"Ages 13 or above"} amount={amount} setAmount={setAmount} />*/}
-            <Container>
-                <BnbsGrid bnbs={bnbs}/>
-            </Container>
-        </TemplateWindbnb>
+        <React.Fragment>
+            <TemplateWindbnb Navbar={Navbar}>
+                {/*<ItemAmountPicker title={"Adults"} description={"Ages 13 or above"} amount={amount} setAmount={setAmount} />*/}
+                <Container>
+                    <BnbsGrid bnbs={bnbs}/>
+                </Container>
+            </TemplateWindbnb>
+        </React.Fragment>
     );
 };
 

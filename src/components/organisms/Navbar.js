@@ -5,12 +5,13 @@ import SearchBarOld from "../molecules/SearchBarOld";
 import SearchBar from "./SearchBar";
 
 const Layout = styled.div`
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     width: 100%;
     gap: 20px;
+    background-color: white;
+    padding: var(--padding-size);
     
     > svg {
         position: absolute;
@@ -22,8 +23,8 @@ const Layout = styled.div`
 const Navbar = () => {
     return(
         <Layout>
+
             <SearchBar/>
-            <Logo/>
         </Layout>
     );
 };

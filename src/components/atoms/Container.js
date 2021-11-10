@@ -13,7 +13,8 @@ const Container = styled.div`
     min-width: 0;
     height: ${props => props.height ? props.height : "100%"};
     overflow: ${props => props.overflow ? props.overflow : "none"};
-    flex: ${props => props.flexSize ? props.flexSize : "1"};;    
+    flex: ${props => props.flexSize ? props.flexSize : "1"};
+    background-color: ${props => props.backgroundColor ? props.backgroundColor : "transparent"};
 `;
 
 Container.propTypes = {
@@ -27,7 +28,8 @@ Container.propTypes = {
     width: PropTypes.string,
     height: PropTypes.string,
     overflow: PropTypes.string,
-    flexSize: PropTypes.number
+    flexSize: PropTypes.number,
+    backgroundColor: PropTypes.string
 };
 
 export default Container;

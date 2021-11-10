@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import PropTypes from 'prop-types';
+import React from "react";
 
-const TemplateWindbnb = styled.div`
+const Layout = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,7 +10,34 @@ const TemplateWindbnb = styled.div`
     min-width: 320px;
     max-width: 1580px;
     min-height: 100vh;
-    padding: var(--padding-size);
+    padding: 0 var(--padding-size) var(--padding-size);
 `;
+
+const ContainerNavbar = styled.div`
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+`;
+
+const ContainerContent = styled.div`
+    margin-top: 150px;
+`;
+
+const TemplateWindbnb = ({Navbar, children}) => {
+    return(
+        <Layout>
+            <ContainerNavbar>
+                <Navbar />
+            </ContainerNavbar>
+            <ContainerContent>
+                {children}
+            </ContainerContent>
+        </Layout>
+    );
+};
+
+TemplateWindbnb.propTypes = {
+    Navbar: PropTypes.func,
+};
 
 export default TemplateWindbnb;
