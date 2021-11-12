@@ -15,7 +15,7 @@ const Windbnb = () => {
     return (
         <React.Fragment>
             <TemplateWindbnb Navbar={Navbar}>
-                {/*<ItemAmountPicker title={"Adults"} description={"Ages 13 or above"} amount={amount} setAmount={setAmount} />*/}
+                <ItemAmountPicker title={"Adults"} description={"Ages 13 or above"} amount={amount} setAmount={setAmount} />
                 <Container>
                     <BnbsGrid bnbs={bnbs}/>
                 </Container>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import PropTypes from 'prop-types';
+import {P} from "./Typography";
 
 const Container = styled.div`
     display: ${props => props.flex && "flex"};
@@ -11,10 +12,12 @@ const Container = styled.div`
     margin: ${props => props.margin && props.margin}; 
     width: ${props => props.width ? props.width : "100%"};
     min-width: 0;
-    height: ${props => props.height ? props.height : "100%"};
+    max-height: ${props => props.maxHeight ? props.maxHeight : "auto"};
+    height: ${props => props.height ? props.height : "auto"};
     overflow: ${props => props.overflow ? props.overflow : "none"};
-    flex: ${props => props.flexSize ? props.flexSize : "1"};
+    flex: ${props => props.flexSize ? props.flexSize : "unset"};
     background-color: ${props => props.backgroundColor ? props.backgroundColor : "transparent"};
+    gap: ${props => props.gap ? props.gap : "unset"};
 `;
 
 Container.propTypes = {
@@ -27,9 +30,11 @@ Container.propTypes = {
     margin: PropTypes.string,
     width: PropTypes.string,
     height: PropTypes.string,
+    maxHeight: PropTypes.string,
     overflow: PropTypes.string,
     flexSize: PropTypes.number,
-    backgroundColor: PropTypes.string
+    backgroundColor: PropTypes.string,
+    gap: PropTypes.string
 };
 
 export default Container;

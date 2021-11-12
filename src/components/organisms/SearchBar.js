@@ -12,10 +12,23 @@ import Input from "../molecules/Input";
 import ItemAmountPicker from "../molecules/ItemAmountPicker";
 
 const Layout = styled.div`
+    z-index: 10;
     display: flex;
     flex-direction: column;
     width: 100%;
     transition: all 500ms ease-in-out;
+    height: ${props => props.isOpen && "300px"};
+`;
+
+const Backdrop = styled.div`
+    background-color: rgba(19, 15, 64, .4);
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    cursor: pointer;
 `;
 
 const LayoutBar = styled.div`
@@ -24,7 +37,6 @@ const LayoutBar = styled.div`
     max-width: ${props => props.isOpen ? "100%" : "450px"};
     grid-template-columns: 1fr 1px 1fr 1px 0.2fr;
     width: 100%;
-    height: 100%;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     transition: all 500ms ease-in-out;
@@ -32,18 +44,12 @@ const LayoutBar = styled.div`
 `;
 
 const LayoutSelectors = styled.div`
+    flex: 1;
+    overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 1px 1fr 1px 0.2fr;
     width: 100%;
-    height: 100%;
-    
-`;
-
-const Test = styled.div`
-    display: flex;
-    width: 100%;
-    min-width: 0;
-    flex: 1;
+    height: 100%;    
 `;
 
 const SearchBar = () => {
@@ -51,20 +57,18 @@ const SearchBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [input1, setInput1] = useState("");
     const [input2, setInput2] = useState("");
-    const [filteredOptions, setFilteredOptions] = useState([]);
-    const options = ["patates", "pomme de terre"];
+    const options = ["patates", "pomme de terre", "blabla", "OK", "Pas d'idées", "Juste","test","yes","letsgo"];
+    const [filteredOptions, setFilteredOptions] = useState(options);
     const [amountAdults, setAmountAdults] = useState(0);
     const [amountChildren, setAmountChildren] = useState(0);
+    const [isLocationInputOpen, setIsLocationInputOpen] = useState(false);
+    const [isGuestsInputOpen, setIsGuestInputOpen] = useState(false);
 
     const handleTextInputChange = (e) => {
         setInput1(e.currentTarget.value);
-        if (options.length && e.currentTarget.value.length ) {
-            setFilteredOptions(options.filter((option) =>
-                option.toLowerCase().indexOf(e.currentTarget.value.toLowerCase()) > -1)
-            );
-        } else if (!e.currentTarget.value.length) {
-            setFilteredOptions([]);
-        }
+        setFilteredOptions(options.filter((option) =>
+            option.toLowerCase().indexOf(e.currentTarget.value.toLowerCase()) > -1)
+        );
     };
 
     const handleOptionClick = (option) => {
@@ -73,17 +77,33 @@ const SearchBar = () => {
     };
 
     return(
-        <Layout>
+        <Layout isOpen={isOpen}>
             <LayoutBar isOpen={isOpen}>
 
-                <Container flex flexSize={1} height={"auto"} onClick={() => setIsOpen(true)} backgroundColor={theme.background}>
+                <Container
+                    flex
+                    flexSize={1}
+                    height={"auto"}
+                    onClick={() => {
+                        setIsOpen(true);
+                        setIsLocationInputOpen(true);
+                    }}
+                    backgroundColor={theme.background}>
                     <Input label={"LOCATION"} placeholder={"Add location"} onChange={handleTextInputChange} value={input1} />
                 </Container>
 
                 <Hr color={lighten(0.75, theme.default.normal)} height={"auto"}/>
 
                 <Container flex flexSize={1}>
-                    <Button as={"button"} flex={1} padding={"12px 16px"} backgroundColor={theme.background}>
+                    <Button
+                        as={"button"}
+                        flex={1}
+                        padding={"12px 16px"}
+                        backgroundColor={theme.background}
+                        onClick={() => {
+                            setIsOpen(true);
+                            setIsGuestInputOpen(true);
+                        }}>
                         <Container flex vertical align={"flex-start"} overflow={"hidden"}>
                             <P size={"tiny"} weight={"800"} family={"secondary"}>GUESTS</P>
                             <P size={"small"} weight={"400"} family={"secondary"} noWrapEllipsis>Add guests</P>
@@ -96,12 +116,15 @@ const SearchBar = () => {
                 <Button
                     as={"button"}
                     flex={0.2}
-
                     backgroundColor={isOpen ? theme.primary : ""}
                     radius={"0 16px 16px 0"}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                        setIsOpen(false);
+                        setIsGuestInputOpen(false);
+                        setIsLocationInputOpen(false);
+                    }}
                     >
-                    <Container flex align={"center"} justify={"center"}>
+                    <Container flex align={"center"} justify={"center"} height={"100%"}>
                         <SearchIcon fill={!isOpen ? theme.primary : theme.background}/>
                         {isOpen && <Separator width={"10px"}/>}
                         {isOpen && <P size={"small"} weight={"700"} family={"secondary"} color={theme.background} noWrapEllipsis>Search</P>}
@@ -110,19 +133,22 @@ const SearchBar = () => {
             </LayoutBar>
 
             {isOpen &&
-                <LayoutSelectors>
-                    <Container flex flexSize={1} vertical>
-                        {filteredOptions.map((option, index) =>
-                            <p key={index} onClick={() => handleOptionClick(option)}>{option}</p>
-                        )}
-                    </Container>
-                    <Container flex flexSize={1} vertical>
-                        <ItemAmountPicker amount={amountAdults} setAmount={setAmountAdults} title={"Adults"} description={"Ages 13 or above"}/>
-                        <ItemAmountPicker amount={amountChildren} setAmount={setAmountChildren} title={"Children"} description={"Ages 2-12"}/>
-                    </Container>
-                </LayoutSelectors>
-            }
+            <LayoutSelectors>
+                {isLocationInputOpen &&
+                <Container flex flexSize={1} vertical padding={"16px 12px"} gap={"36px"}>
+                    {filteredOptions.map((option, index) =>
+                        <P size={theme.font.small} weight={"400"} family={"secondary"} key={index} onClick={() => handleOptionClick(option)}>{option}</P>
+                    )}
+                </Container>}
 
+                {isGuestsInputOpen &&
+                <Container flex flexSize={1} vertical justify={"flex-start"} align={"flex-start"} padding={"16px 12px"}>
+                    <ItemAmountPicker amount={amountAdults} setAmount={setAmountAdults} title={"Adults"} description={"Ages 13 or above"}/>
+                    <Separator width={"100%"} height={"20px"}/>
+                    <ItemAmountPicker amount={amountChildren} setAmount={setAmountChildren} title={"Children"} description={"Ages 2-12"}/>
+                </Container>}
+            </LayoutSelectors>}
+            {isOpen && <Backdrop onClick={() => setIsOpen(false)}/>}
         </Layout>
     );
 };
