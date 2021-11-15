@@ -14,8 +14,8 @@ const Layout = styled.div`
 `;
 
 const ContainerNavbar = styled.div`
+    z-index: 1;
     position: fixed;
-    z-index: 10;
     width: 100%;
 `;
 

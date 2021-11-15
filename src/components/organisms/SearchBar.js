@@ -12,7 +12,7 @@ import Input from "../molecules/Input";
 import ItemAmountPicker from "../molecules/ItemAmountPicker";
 
 const Layout = styled.div`
-    z-index: 10;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -20,19 +20,7 @@ const Layout = styled.div`
     height: ${props => props.isOpen && "300px"};
 `;
 
-const Backdrop = styled.div`
-    background-color: rgba(19, 15, 64, .4);
-    z-index: 0;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-`;
-
 const LayoutBar = styled.div`
-    z-index: 1;
     display: grid;
     max-width: ${props => props.isOpen ? "100%" : "450px"};
     grid-template-columns: 1fr 1px 1fr 1px 0.2fr;
@@ -52,9 +40,13 @@ const LayoutSelectors = styled.div`
     height: 100%;    
 `;
 
-const SearchBar = () => {
+const Option = styled.div`
+    
+`;
+
+const SearchBar = ({setIsOpen, isOpen}) => {
     const theme = useTheme();
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
     const [input1, setInput1] = useState("");
     const [input2, setInput2] = useState("");
     const options = ["patates", "pomme de terre", "blabla", "OK", "Pas d'idées", "Juste","test","yes","letsgo"];
@@ -135,9 +127,11 @@ const SearchBar = () => {
             {isOpen &&
             <LayoutSelectors>
                 {isLocationInputOpen &&
-                <Container flex flexSize={1} vertical padding={"16px 12px"} gap={"36px"}>
+                <Container flex flexSize={1} vertical padding={"16px 12px"} gap={"30px"}>
                     {filteredOptions.map((option, index) =>
-                        <P size={theme.font.small} weight={"400"} family={"secondary"} key={index} onClick={() => handleOptionClick(option)}>{option}</P>
+                        <Option>
+                            <P size={"small"} weight={"400"} family={"secondary"} key={index} onClick={() => handleOptionClick(option)}>{option}</P>
+                        </Option>
                     )}
                 </Container>}
 
@@ -148,7 +142,7 @@ const SearchBar = () => {
                     <ItemAmountPicker amount={amountChildren} setAmount={setAmountChildren} title={"Children"} description={"Ages 2-12"}/>
                 </Container>}
             </LayoutSelectors>}
-            {isOpen && <Backdrop onClick={() => setIsOpen(false)}/>}
+
         </Layout>
     );
 };

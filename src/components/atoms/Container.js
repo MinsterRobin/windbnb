@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import PropTypes from 'prop-types';
-import {P} from "./Typography";
 
 const Container = styled.div`
+    position: ${props => props.position};
     display: ${props => props.flex && "flex"};
     flex-direction: ${props => props.vertical && "column"};
     flex-wrap: ${props => props.wrap && "wrap"};
@@ -22,6 +22,7 @@ const Container = styled.div`
 
 Container.propTypes = {
     flex: PropTypes.bool,
+    position: PropTypes.string,
     wrap: PropTypes.bool,
     vertical: PropTypes.bool,
     align: PropTypes.string,
