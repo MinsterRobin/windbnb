@@ -2,7 +2,6 @@ import React, {useState, useRef} from "react";
 import styled, {useTheme} from 'styled-components';
 import PropTypes from 'prop-types';
 import Button from "../atoms/Button";
-import Container from "../atoms/Container";
 import {P} from "../atoms/Typography";
 import {lighten} from "polished";
 

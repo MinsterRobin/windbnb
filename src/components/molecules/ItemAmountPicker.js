@@ -17,7 +17,7 @@ const ItemAmountPicker = ({title, description, amount, setAmount}) => {
     };
 
     return(
-        <Container flex vertical justify={"center"} align={"flex-start"} width={"max-content"}>
+        <Container flex vertical justify={"center"} align={"flex-start"} width={"max-content"} position={"relative"}>
             <P size={"small"} weight={"700"} family={"secondary"} color={theme.default.normal}>{title}</P>
             <P size={"small"} weight={"400"} family={"secondary"} color={lighten(0.6,theme.default.normal)}>{description}</P>
 

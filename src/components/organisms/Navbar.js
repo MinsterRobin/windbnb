@@ -1,15 +1,13 @@
 import React, {useState} from "react";
 import styled, {useTheme} from 'styled-components';
 import {ReactComponent as Logo} from "../../data/assets/logo.svg";
-import SearchBarOld from "../molecules/SearchBarOld";
 import SearchBar from "./SearchBar";
 import Container from "../atoms/Container";
-import {darken, opacify} from "polished";
+import {darken} from "polished";
 
 const Layout = styled.div`
     position: relative;
     display: flex;
-    align-items: center;
     justify-content: flex-end;
     margin: auto;
     min-width: 320px;
@@ -18,9 +16,22 @@ const Layout = styled.div`
     gap: 20px;
     padding: var(--padding-size);
     
+    @media (max-width: 576px) {
+        flex-direction: column;
+        align-items: center;
+    }
+    
     > svg {
         position: absolute;
-        left: 0;
+        left: var(--padding-size);
+        top: calc(var(--padding-size) + 18px);
+        
+        @media (max-width: 576px) {
+            position: relative;
+            align-self: flex-start;
+            left: 0;
+            top: 0;
+        }
     }
 `;
 
@@ -45,6 +56,7 @@ const Navbar = () => {
             {isOpen && <Backdrop onClick={() => setIsOpen(false)}/>}
             <Container flex backgroundColor={theme.background} width={"100%"} position={"relative"}>
                 <Layout>
+                    <Logo/>
                     <SearchBar isOpen={isOpen} setIsOpen={setIsOpen}/>
                 </Layout>
             </Container>

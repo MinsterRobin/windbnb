@@ -5,7 +5,6 @@ import BnbCard from "../molecules/BnbCard";
 import Container from "../atoms/Container";
 import {P} from "../atoms/Typography";
 import Separator from "../atoms/Separator";
-import BnbRating from "../atoms/BnbRating";
 
 const GridLayout = styled.div`
     display: grid;
