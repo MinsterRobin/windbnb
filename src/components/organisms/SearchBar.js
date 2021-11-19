@@ -128,7 +128,7 @@ const SearchBar = ({setIsOpen, isOpen}) => {
                         }}>
                         <Container flex vertical align={"flex-start"} overflow={"hidden"}>
                             <P size={"tiny"} weight={"800"} family={"secondary"}>GUESTS</P>
-                            <P size={"small"} weight={"400"} family={"secondary"} noWrapEllipsis>{input2 === 0 ? "Add guests" : input2 + " guests"}</P>
+                            <P size={"small"} weight={"400"} family={"secondary"} color={input2 === 0 ? theme.default.lighten3 : theme.default.normal} noWrapEllipsis>{input2 === 0 ? "Add guests" : input2 + " guests"}</P>
                         </Container>
                     </Button>
                 </MobileBarContainer>
@@ -175,7 +175,7 @@ const SearchBar = ({setIsOpen, isOpen}) => {
             </MobileSearchLayout>
             }
             <Layout isOpen={isOpen}>
-                <LayoutBar isOpen={isOpen}>
+                <LayoutBar>
 
                     <Container
                         flex
@@ -202,7 +202,7 @@ const SearchBar = ({setIsOpen, isOpen}) => {
                         }}>
                         <Container flex vertical align={"flex-start"} overflow={"hidden"}>
                             <P size={"tiny"} weight={"800"} family={"secondary"}>GUESTS</P>
-                            <P size={"small"} weight={"400"} family={"secondary"} noWrapEllipsis>{input2 === 0 ? "Add guests" : input2 + " guests"}</P>
+                            <P size={"small"} weight={"400"} family={"secondary"} color={input2 === 0 ? theme.default.lighten3 : theme.default.normal} noWrapEllipsis>{input2 === 0 ? "Add guests" : input2 + " guests"}</P>
                         </Container>
                     </Button>
 

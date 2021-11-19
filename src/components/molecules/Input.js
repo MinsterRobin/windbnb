@@ -18,7 +18,7 @@ const InputLayout = styled.div`
     :hover {
         opacity: 0.9;
         background-color: ${props => lighten(0.74,props.theme.default.normal)};
-    }    
+    }
 `;
 
 const Input = ({label, placeholder, value, onChange}) => {

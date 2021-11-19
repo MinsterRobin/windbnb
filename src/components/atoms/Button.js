@@ -9,7 +9,7 @@ const Button = styled.input`
     width: 100%;
     background-color: ${props => props.backgroundColor ? props.backgroundColor : "transparent"};
     color: ${props => props.color ? props.theme[props.color] : props.theme[props.theme.default.normal]};
-    
+    font-family: ${props => props.theme.font.family.secondary};
     border: ${props => props.border ?
         props.border.size + " solid " + props.border.color :
         "none"
@@ -27,6 +27,10 @@ const Button = styled.input`
     
     :focus {
         outline: none;
+    }
+    
+    ::placeholder {
+        color: ${props => props.theme.default.lighten3};
     }
 `;
 
