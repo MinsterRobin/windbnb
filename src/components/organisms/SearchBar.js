@@ -9,6 +9,7 @@ import Container from "../atoms/Container";
 import Separator from "../atoms/Separator";
 import Input from "../molecules/Input";
 import ItemAmountPicker from "../molecules/ItemAmountPicker";
+import Location from "../atoms/Location";
 
 const Layout = styled.div`
     z-index: 1;
@@ -37,10 +38,6 @@ const LayoutSelectors = styled.div`
     grid-template-columns: 1fr 1px 1fr 1px 0.45fr;
     width: 100%;
     height: 100%;    
-`;
-
-const Option = styled.div`
-    
 `;
 
 const MobileSearchLayout = styled.div`
@@ -73,7 +70,7 @@ const SearchBar = ({setIsOpen, isOpen}) => {
     // const [isOpen, setIsOpen] = useState(false);
     const [input1, setInput1] = useState("");
     const [input2, setInput2] = useState(0);
-    const options = ["patates", "pomme de terre", "blabla", "OK", "Pas d'idées", "Juste","test","yes","letsgo"];
+    const options = ["Patates", "Pomme de terre", "Blabla", "OK", "Pas d'idées", "Juste","Test","Yes","Letsgo"];
     const [filteredOptions, setFilteredOptions] = useState(options);
     const [amountAdults, setAmountAdults] = useState(0);
     const [amountChildren, setAmountChildren] = useState(0);
@@ -101,7 +98,9 @@ const SearchBar = ({setIsOpen, isOpen}) => {
             {isOpen &&
             <MobileSearchLayout isOpen={isOpen}>
                 <P size={"very_small"} weight={"700"} family={"secondary"}>Edit your search</P>
+
                 <Separator height={"24px"} />
+
                 <MobileBarContainer>
                     <Container
                         flex
@@ -134,13 +133,13 @@ const SearchBar = ({setIsOpen, isOpen}) => {
                     </Button>
                 </MobileBarContainer>
 
+                <Separator height={"24px"}/>
+
                 <Container flex flexSize={1} width={"100%"} overflow={"hidden"}>
                     {isLocationInputOpen &&
                     <Container flex flexSize={1} vertical padding={"20px 16px"} gap={"30px"}>
                         {filteredOptions.map((option, index) =>
-                            <Option key={index}>
-                                <P size={"small"} weight={"400"} family={"secondary"} key={index} onClick={() => handleOptionClick(option)}>{option}</P>
-                            </Option>
+                            <Location key={index} onClick={() => handleOptionClick(option)}>{option}</Location>
                         )}
                     </Container>}
 
@@ -152,22 +151,26 @@ const SearchBar = ({setIsOpen, isOpen}) => {
                     </Container>}
                 </Container>
 
-                <Button
-                    as={"button"}
-                    backgroundColor={isOpen ? theme.primary : ""}
-                    radius={"16px"}
-                    onClick={() => {
-                        setIsOpen(false);
-                        setIsGuestInputOpen(false);
-                        setIsLocationInputOpen(false);
-                    }}
-                >
-                    <Container flex align={"center"} justify={"center"} height={"100%"}>
-                        <SearchIcon fill={!isOpen ? theme.primary : theme.background}/>
-                        {isOpen && <Separator width={"10px"}/>}
-                        {isOpen && <P size={"small"} weight={"700"} family={"secondary"} color={theme.background} noWrapEllipsis>Search</P>}
-                    </Container>
-                </Button>
+                <Separator height={"72px"}/>
+
+                <Container flex maxWidth={"126px"} width={"100%"} height={"48px"} alignSelf={"center"}>
+                    <Button
+                        as={"button"}
+                        backgroundColor={isOpen ? theme.primary : ""}
+                        radius={"16px"}
+                        onClick={() => {
+                            setIsOpen(false);
+                            setIsGuestInputOpen(false);
+                            setIsLocationInputOpen(false);
+                        }}
+                    >
+                        <Container flex align={"center"} justify={"center"} height={"100%"}>
+                            <SearchIcon fill={!isOpen ? theme.primary : theme.background}/>
+                            {isOpen && <Separator width={"10px"}/>}
+                            {isOpen && <P size={"small"} weight={"700"} family={"secondary"} color={theme.background} noWrapEllipsis>Search</P>}
+                        </Container>
+                    </Button>
+                </Container>
 
             </MobileSearchLayout>
             }
@@ -229,9 +232,7 @@ const SearchBar = ({setIsOpen, isOpen}) => {
                     {isLocationInputOpen &&
                     <Container flex flexSize={1} vertical padding={"20px 16px"} gap={"30px"}>
                         {filteredOptions.map((option, index) =>
-                            <Option key={index}>
-                                <P size={"small"} weight={"400"} family={"secondary"} key={index} onClick={() => handleOptionClick(option)}>{option}</P>
-                            </Option>
+                            <Location key={index} onClick={() => handleOptionClick(option)}>{option}</Location>
                         )}
                     </Container>}
 

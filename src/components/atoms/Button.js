@@ -6,7 +6,7 @@ const Button = styled.input`
     flex: ${props => props.flex ? props.flex : "unset"};
     display: flex;    
     padding: ${props => props.padding ? props.padding : 0};
-    
+    width: 100%;
     background-color: ${props => props.backgroundColor ? props.backgroundColor : "transparent"};
     color: ${props => props.color ? props.theme[props.color] : props.theme[props.theme.default.normal]};
     

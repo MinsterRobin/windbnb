@@ -24,30 +24,33 @@ const ItemAmountPicker = ({title, description, amount, setAmount}) => {
             <Separator height={"12px"}/>
             
             <Container flex justify={"flex-start"} align={"center"}>
-
-                <Button
-                    as={"button"}
-                    onClick={() => handleCounter(-1)}
-                    border={{size: "1px", color: lighten(0.3,theme.default.normal)}}
-                    radius={"4px"}>
-                    <Container flex align={"center"} justify={"center"} width={"21px"} height={"21px"}>
-                        <P size={"small"} weight={"600"} family={"primary"} color={lighten(0.3,theme.default.normal)}>-</P>
-                    </Container>
-                </Button>
+                <Container width={"auto"}>
+                    <Button
+                        as={"button"}
+                        onClick={() => handleCounter(-1)}
+                        border={{size: "1px", color: lighten(0.3,theme.default.normal)}}
+                        radius={"4px"}>
+                        <Container flex align={"center"} justify={"center"} width={"21px"} height={"21px"}>
+                            <P size={"small"} weight={"600"} family={"primary"} color={lighten(0.3,theme.default.normal)}>-</P>
+                        </Container>
+                    </Button>
+                </Container>
 
                 <Separator width={"16px"}/>
                 <P size={"small"} weight={"700"} family={"secondary"} color={theme.default.normal}>{amount}</P>
                 <Separator width={"16px"}/>
 
-                <Button
-                    as={"button"}
-                    onClick={() => handleCounter(1)}
-                    border={{size: "1px", color: lighten(0.3,theme.default.normal)}}
-                    radius={"4px"}>
-                    <Container flex align={"center"} justify={"center"} width={"20px"} height={"20px"}>
-                        <P size={"small"} weight={"600"} family={"primary"} color={lighten(0.3,theme.default.normal)}>+</P>
-                    </Container>
-                </Button>
+                <Container width={"auto"}>
+                    <Button
+                        as={"button"}
+                        onClick={() => handleCounter(1)}
+                        border={{size: "1px", color: lighten(0.3,theme.default.normal)}}
+                        radius={"4px"}>
+                        <Container flex align={"center"} justify={"center"} width={"20px"} height={"20px"}>
+                            <P size={"small"} weight={"600"} family={"primary"} color={lighten(0.3,theme.default.normal)}>+</P>
+                        </Container>
+                    </Button>
+                </Container>
 
             </Container>
         </Container>
