@@ -29,7 +29,7 @@ const Location = ({children, onClick}) => {
     );
 };
 
-ItemAmountPicker.propTypes = {
+Location.propTypes = {
     children: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired
 };
