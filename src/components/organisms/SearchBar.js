@@ -10,15 +10,18 @@ import Separator from "../atoms/Separator";
 import Input from "../molecules/Input";
 import ItemAmountPicker from "../molecules/ItemAmountPicker";
 import Location from "../atoms/Location";
+import {useDispatch, useSelector} from "react-redux";
+import {selectNavbarIsOpen} from "../../slices/sliceNavbar";
+import {setIsOpen} from "../../slices/sliceNavbar";
 
 const Layout = styled.div`
     z-index: 1;
     display: flex;
     flex-direction: column;
-    max-width: ${props => props.isOpen ? "100%" : "450px"};
+    max-width: ${props => props.isNavbarOpen ? "100%" : "450px"};
     width: 100%;
     transition: all 500ms ease-in-out;
-    height: ${props => props.isOpen && "300px"};
+    height: ${props => props.isNavbarOpen && "300px"};
 `;
 
 const LayoutBar = styled.div`
@@ -65,7 +68,7 @@ const MobileBarContainer = styled.div`
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
 `;
 
-const SearchBar = ({setIsOpen, isOpen}) => {
+const SearchBar = () => {
     const theme = useTheme();
     // const [isOpen, setIsOpen] = useState(false);
     const [input1, setInput1] = useState("");
@@ -76,6 +79,8 @@ const SearchBar = ({setIsOpen, isOpen}) => {
     const [amountChildren, setAmountChildren] = useState(0);
     const [isLocationInputOpen, setIsLocationInputOpen] = useState(false);
     const [isGuestsInputOpen, setIsGuestInputOpen] = useState(false);
+    const dispatch = useDispatch();
+    const isNavbarOpen = useSelector(selectNavbarIsOpen);
 
     const handleTextInputChange = (e) => {
         setInput1(e.currentTarget.value);
@@ -95,8 +100,8 @@ const SearchBar = ({setIsOpen, isOpen}) => {
 
     return(
         <React.Fragment>
-            {isOpen &&
-            <MobileSearchLayout isOpen={isOpen}>
+            {isNavbarOpen &&
+            <MobileSearchLayout isNavbarOpen={isNavbarOpen}>
                 <P size={"very_small"} weight={"700"} family={"secondary"}>Edit your search</P>
 
                 <Separator height={"24px"} />
@@ -106,7 +111,7 @@ const SearchBar = ({setIsOpen, isOpen}) => {
                         flex
                         height={"auto"}
                         onClick={() => {
-                            setIsOpen(true);
+                            dispatch(setIsOpen(true));
                             setIsLocationInputOpen(true);
                             setIsGuestInputOpen(false);
                         }}
@@ -122,7 +127,7 @@ const SearchBar = ({setIsOpen, isOpen}) => {
                         padding={"12px 16px"}
                         backgroundColor={theme.background}
                         onClick={() => {
-                            setIsOpen(true);
+                            dispatch(setIsOpen(true));
                             setIsLocationInputOpen(false);
                             setIsGuestInputOpen(true);
                         }}>
@@ -156,32 +161,32 @@ const SearchBar = ({setIsOpen, isOpen}) => {
                 <Container flex maxWidth={"126px"} width={"100%"} height={"48px"} alignSelf={"center"}>
                     <Button
                         as={"button"}
-                        backgroundColor={isOpen ? theme.primary : ""}
+                        backgroundColor={isNavbarOpen ? theme.primary : ""}
                         radius={"16px"}
                         onClick={() => {
-                            setIsOpen(false);
+                            dispatch(setIsOpen(false));
                             setIsGuestInputOpen(false);
                             setIsLocationInputOpen(false);
                         }}
                     >
                         <Container flex align={"center"} justify={"center"} height={"100%"}>
-                            <SearchIcon fill={!isOpen ? theme.primary : theme.background}/>
-                            {isOpen && <Separator width={"10px"}/>}
-                            {isOpen && <P size={"small"} weight={"700"} family={"secondary"} color={theme.background} noWrapEllipsis>Search</P>}
+                            <SearchIcon fill={!isNavbarOpen ? theme.primary : theme.background}/>
+                            {isNavbarOpen && <Separator width={"10px"}/>}
+                            {isNavbarOpen && <P size={"small"} weight={"700"} family={"secondary"} color={theme.background} noWrapEllipsis>Search</P>}
                         </Container>
                     </Button>
                 </Container>
 
             </MobileSearchLayout>
             }
-            <Layout isOpen={isOpen}>
+            <Layout isNavbarOpen={isNavbarOpen}>
                 <LayoutBar>
 
                     <Container
                         flex
                         height={"auto"}
                         onClick={() => {
-                            setIsOpen(true);
+                            dispatch(setIsOpen(true));
                             setIsLocationInputOpen(true);
                             setIsGuestInputOpen(false);
                         }}
@@ -196,7 +201,7 @@ const SearchBar = ({setIsOpen, isOpen}) => {
                         padding={"12px 16px"}
                         backgroundColor={theme.background}
                         onClick={() => {
-                            setIsOpen(true);
+                            dispatch(setIsOpen(true));
                             setIsLocationInputOpen(false);
                             setIsGuestInputOpen(true);
                         }}>
@@ -211,23 +216,23 @@ const SearchBar = ({setIsOpen, isOpen}) => {
 
                     <Button
                         as={"button"}
-                        backgroundColor={isOpen ? theme.primary : ""}
+                        backgroundColor={isNavbarOpen ? theme.primary : ""}
                         radius={"0 16px 16px 0"}
                         onClick={() => {
-                            setIsOpen(false);
+                            dispatch(setIsOpen(false));
                             setIsGuestInputOpen(false);
                             setIsLocationInputOpen(false);
                         }}
                         >
                         <Container flex align={"center"} justify={"center"} height={"100%"}>
-                            <SearchIcon fill={!isOpen ? theme.primary : theme.background}/>
-                            {isOpen && <Separator width={"10px"}/>}
-                            {isOpen && <P size={"small"} weight={"700"} family={"secondary"} color={theme.background} noWrapEllipsis>Search</P>}
+                            <SearchIcon fill={!isNavbarOpen ? theme.primary : theme.background}/>
+                            {isNavbarOpen && <Separator width={"10px"}/>}
+                            {isNavbarOpen && <P size={"small"} weight={"700"} family={"secondary"} color={theme.background} noWrapEllipsis>Search</P>}
                         </Container>
                     </Button>
                 </LayoutBar>
 
-                {isOpen &&
+                {isNavbarOpen &&
                 <LayoutSelectors>
                     {isLocationInputOpen &&
                     <Container flex flexSize={1} vertical padding={"20px 16px"} gap={"30px"}>

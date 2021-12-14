@@ -4,6 +4,9 @@ import {ReactComponent as Logo} from "../../data/assets/logo.svg";
 import SearchBar from "./SearchBar";
 import Container from "../atoms/Container";
 import {darken} from "polished";
+import {useDispatch, useSelector} from "react-redux";
+import {selectNavbarIsOpen} from "../../slices/sliceNavbar";
+import {setIsOpen} from "../../slices/sliceNavbar";
 
 const Layout = styled.div`
     position: relative;
@@ -48,16 +51,18 @@ const Backdrop = styled.div`
 
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
     const theme = useTheme();
+    const dispatch = useDispatch();
+    const isNavbarOpen = useSelector(selectNavbarIsOpen);
 
     return(
         <React.Fragment>
-            {isOpen && <Backdrop onClick={() => setIsOpen(false)}/>}
+            {isNavbarOpen && <Backdrop onClick={() => dispatch(setIsOpen(false))}/>}
             <Container flex backgroundColor={theme.background} width={"100%"} position={"relative"}>
                 <Layout>
                     <Logo/>
-                    <SearchBar isOpen={isOpen} setIsOpen={setIsOpen}/>
+                    <SearchBar isOpen={isNavbarOpen} setIsOpen={setIsOpen}/>
                 </Layout>
             </Container>
         </React.Fragment>
