@@ -51,7 +51,6 @@ const Backdrop = styled.div`
 
 
 const Navbar = () => {
-    // const [isOpen, setIsOpen] = useState(false);
     const theme = useTheme();
     const dispatch = useDispatch();
     const isNavbarOpen = useSelector(selectNavbarIsOpen);
@@ -62,7 +61,7 @@ const Navbar = () => {
             <Container flex backgroundColor={theme.background} width={"100%"} position={"relative"}>
                 <Layout>
                     <Logo/>
-                    <SearchBar isOpen={isNavbarOpen} setIsOpen={setIsOpen}/>
+                    <SearchBar/>
                 </Layout>
             </Container>
         </React.Fragment>

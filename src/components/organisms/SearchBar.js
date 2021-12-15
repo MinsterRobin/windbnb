@@ -13,6 +13,7 @@ import Location from "../atoms/Location";
 import {useDispatch, useSelector} from "react-redux";
 import {selectNavbarIsOpen} from "../../slices/sliceNavbar";
 import {setIsOpen} from "../../slices/sliceNavbar";
+import bnbs from "../../data/stays"
 
 const Layout = styled.div`
     z-index: 1;
@@ -70,11 +71,19 @@ const MobileBarContainer = styled.div`
 
 const SearchBar = () => {
     const theme = useTheme();
-    // const [isOpen, setIsOpen] = useState(false);
+
     const [input1, setInput1] = useState("");
     const [input2, setInput2] = useState(0);
-    const options = ["Patates", "Pomme de terre", "Blabla", "OK", "Pas d'idées", "Juste","Test","Yes","Letsgo"];
+
+    const optionsOld = ["Patates", "Pomme de terre", "Blabla", "OK", "Pas d'idées", "Juste","Test","Yes","Letsgo"];
+    let options = bnbs.map(bnb => {return {
+        city: bnb.city,
+        country: bnb.country
+    }});
+    options = options.filter((option, index, self) => index === self.findIndex(e => e.city === option.city));
+
     const [filteredOptions, setFilteredOptions] = useState(options);
+
     const [amountAdults, setAmountAdults] = useState(0);
     const [amountChildren, setAmountChildren] = useState(0);
     const [isLocationInputOpen, setIsLocationInputOpen] = useState(false);
@@ -84,9 +93,11 @@ const SearchBar = () => {
 
     const handleTextInputChange = (e) => {
         setInput1(e.currentTarget.value);
-        setFilteredOptions(options.filter((option) =>
-            option.toLowerCase().indexOf(e.currentTarget.value.toLowerCase()) > -1)
-        );
+        setFilteredOptions(options.filter((option) => {
+                let stringOption = option.city + ", " + option.country;
+                return (stringOption.toLowerCase().indexOf(e.currentTarget.value.toLowerCase()) > -1);
+            }
+        ));
     };
 
     const handleOptionClick = (option) => {
@@ -144,7 +155,7 @@ const SearchBar = () => {
                     {isLocationInputOpen &&
                     <Container flex flexSize={1} vertical padding={"20px 16px"} gap={"30px"}>
                         {filteredOptions.map((option, index) =>
-                            <Location key={index} onClick={() => handleOptionClick(option)}>{option}</Location>
+                            <Location key={index} onClick={() => handleOptionClick(option)}>{option.city + ", " + option.country}</Location>
                         )}
                     </Container>}
 
@@ -237,7 +248,7 @@ const SearchBar = () => {
                     {isLocationInputOpen &&
                     <Container flex flexSize={1} vertical padding={"20px 16px"} gap={"30px"}>
                         {filteredOptions.map((option, index) =>
-                            <Location key={index} onClick={() => handleOptionClick(option)}>{option}</Location>
+                            <Location key={index} onClick={() => handleOptionClick(option)}>{option.city + ", " + option.country}</Location>
                         )}
                     </Container>}
 
