@@ -22,6 +22,8 @@ const ContainerNavbar = styled.div`
 
 const ContainerContent = styled.div`
     margin-top: 150px;
+    width: 100%;
+    flex: 1;
 `;
 
 const TemplateWindbnb = ({Navbar, Footer, children}) => {

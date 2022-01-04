@@ -31,6 +31,7 @@ const BnbsGrid = ({bnbs}) => {
         <Container flex vertical>
             <Container flex align={"center"} justify={"space-between"}>
                 <P size={"large"} mobileSize={"medium"} weight={"700"} family={"primary"}>Stays in Finland</P>
+                <Separator width={"10px"}/>
                 <P size={"small"} weight={"500"} family={"primary"}>{bnbs.length + " stays"}</P>
             </Container>
             <Separator height={"32px"}/>

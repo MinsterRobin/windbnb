@@ -13,6 +13,7 @@ import Location from "../atoms/Location";
 import {useDispatch, useSelector} from "react-redux";
 import {selectNavbarIsOpen} from "../../slices/sliceNavbar";
 import {setIsOpen} from "../../slices/sliceNavbar";
+import {filterBnbs} from "../../slices/sliceBnbs";
 import bnbs from "../../data/stays"
 
 const Layout = styled.div`
@@ -73,9 +74,11 @@ const SearchBar = () => {
     const theme = useTheme();
 
     const [input1, setInput1] = useState("");
+    const [location, setLocation] = useState({city: "", country: ""});
     const [input2, setInput2] = useState(0);
 
     const optionsOld = ["Patates", "Pomme de terre", "Blabla", "OK", "Pas d'idées", "Juste","Test","Yes","Letsgo"];
+
     let options = bnbs.map(bnb => {return {
         city: bnb.city,
         country: bnb.country
@@ -93,16 +96,17 @@ const SearchBar = () => {
 
     const handleTextInputChange = (e) => {
         setInput1(e.currentTarget.value);
+        setLocation({city: "", country: ""});
         setFilteredOptions(options.filter((option) => {
-                let stringOption = option.city + ", " + option.country;
-                return (stringOption.toLowerCase().indexOf(e.currentTarget.value.toLowerCase()) > -1);
-            }
-        ));
+            let stringOption = option.city + ", " + option.country;
+            return (stringOption.toLowerCase().indexOf(e.currentTarget.value.toLowerCase()) > -1);
+        }));
     };
 
     const handleOptionClick = (option) => {
         setFilteredOptions([]);
-        setInput1(option);
+        setLocation(option);
+        setInput1(option.city + ", " + option.country);
     };
 
     useEffect(() => {
@@ -139,6 +143,7 @@ const SearchBar = () => {
                         backgroundColor={theme.background}
                         onClick={() => {
                             dispatch(setIsOpen(true));
+                            dispatch(filterBnbs({location: location, guests: input2}));
                             setIsLocationInputOpen(false);
                             setIsGuestInputOpen(true);
                         }}>
@@ -176,6 +181,7 @@ const SearchBar = () => {
                         radius={"16px"}
                         onClick={() => {
                             dispatch(setIsOpen(false));
+                            dispatch(filterBnbs({location: location, guests: input2}));
                             setIsGuestInputOpen(false);
                             setIsLocationInputOpen(false);
                         }}
@@ -222,7 +228,6 @@ const SearchBar = () => {
                         </Container>
                     </Button>
 
-
                     <Hr color={lighten(0.75, theme.default.normal)} height={"auto"}/>
 
                     <Button
@@ -231,6 +236,7 @@ const SearchBar = () => {
                         radius={"0 16px 16px 0"}
                         onClick={() => {
                             dispatch(setIsOpen(false));
+                            dispatch(filterBnbs({location: location, guests: input2}));
                             setIsGuestInputOpen(false);
                             setIsLocationInputOpen(false);
                         }}
