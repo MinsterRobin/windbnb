@@ -4,7 +4,6 @@ import {P} from "./Typography";
 import React from "react";
 import styled, {useTheme} from 'styled-components';
 import PropTypes from "prop-types";
-import ItemAmountPicker from "../molecules/ItemAmountPicker";
 
 const ContainerLocation = styled.div`
     display: flex;

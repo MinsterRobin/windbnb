@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import styled, {useTheme} from 'styled-components';
 import {ReactComponent as Logo} from "../../data/assets/logo.svg";
 import SearchBar from "./SearchBar";

@@ -77,8 +77,6 @@ const SearchBar = () => {
     const [location, setLocation] = useState({city: "", country: ""});
     const [input2, setInput2] = useState(0);
 
-    const optionsOld = ["Patates", "Pomme de terre", "Blabla", "OK", "Pas d'idées", "Juste","Test","Yes","Letsgo"];
-
     let options = bnbs.map(bnb => {return {
         city: bnb.city,
         country: bnb.country
@@ -91,8 +89,9 @@ const SearchBar = () => {
     const [amountChildren, setAmountChildren] = useState(0);
     const [isLocationInputOpen, setIsLocationInputOpen] = useState(false);
     const [isGuestsInputOpen, setIsGuestInputOpen] = useState(false);
-    const dispatch = useDispatch();
     const isNavbarOpen = useSelector(selectNavbarIsOpen);
+
+    const dispatch = useDispatch();
 
     const handleTextInputChange = (e) => {
         setInput1(e.currentTarget.value);
